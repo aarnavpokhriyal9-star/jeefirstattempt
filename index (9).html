@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEE First Attempt — Paper 1: The Beginning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--brand:#f97316;--brand-dim:#c2571a;--bg:#0a0a0f;--card:#12121a;--card2:#1a1a26;--text:#f1f0f8;--muted:#8b8aa0;--border:rgba(255,255,255,0.08);--r:12px;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;}
+.page{display:none;}.page.active{display:block;}
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 40px;border-bottom:0.5px solid var(--border);background:rgba(10,10,15,0.97);position:sticky;top:0;z-index:100;}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.logo-icon{width:34px;height:34px;background:var(--brand);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#fff;}
+.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--text);}
+.logo-text span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;font-size:14px;}
+.nav-links a{color:var(--muted);text-decoration:none;cursor:pointer;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{background:var(--brand);color:#fff;border:none;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.nav-cta:hover{background:var(--brand-dim);}
+/* HOME */
+.hero{text-align:center;padding:64px 40px 48px;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(249,115,22,0.12);border:0.5px solid rgba(249,115,22,0.3);color:var(--brand);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:24px;letter-spacing:0.8px;text-transform:uppercase;}
+.hero h1{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:18px;}
+.hero h1 .hl{color:var(--brand);}
+.hero-sub{color:var(--muted);font-size:16px;max-width:480px;margin:0 auto 14px;line-height:1.7;}
+.hero-note{font-size:12px;color:var(--muted);opacity:0.6;margin-bottom:32px;}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;}
+.btn-p{background:var(--brand);color:#fff;border:none;padding:13px 26px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-p:hover{background:var(--brand-dim);}
+.btn-s{background:transparent;color:var(--text);border:0.5px solid rgba(255,255,255,0.2);padding:13px 26px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-s:hover{border-color:rgba(255,255,255,0.4);}
+.usp-strip{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 20px;margin-bottom:48px;}
+.usp-pill{display:inline-flex;align-items:center;gap:7px;background:var(--card);border:0.5px solid var(--border);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--text);}
+.usp-pill i{color:var(--brand);font-size:14px;}
+.stats{display:flex;justify-content:center;border-top:0.5px solid var(--border);flex-wrap:wrap;}
+.stat{text-align:center;padding:24px 36px;border-right:0.5px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--brand);}
+.stat-l{font-size:12px;color:var(--muted);margin-top:2px;}
+/* SECTIONS */
+.sec{padding:56px 40px;max-width:900px;margin:0 auto;}
+.sec-full{padding:48px 40px;background:var(--card);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);}
+.sec-in{max-width:900px;margin:0 auto;}
+.sec-lbl{font-size:11px;font-weight:700;color:var(--brand);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.sec-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-0.5px;margin-bottom:10px;}
+.sec-sub{color:var(--muted);font-size:14px;line-height:1.7;}
+/* DIFF CARDS */
+.diff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:28px;}
+.diff-card{background:var(--card2);border:0.5px solid var(--border);border-radius:var(--r);padding:20px;}
+.diff-tag{display:inline-block;background:rgba(249,115,22,0.1);color:var(--brand);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:10px;letter-spacing:0.5px;}
+.diff-icon{width:38px;height:38px;background:rgba(249,115,22,0.1);border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.diff-icon i{color:var(--brand);font-size:18px;}
+.diff-card h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;margin-bottom:6px;}
+.diff-card p{font-size:13px;color:var(--muted);line-height:1.6;}
+/* COURSE */
+.course-card{background:var(--card);border:1px solid rgba(249,115,22,0.3);border-radius:var(--r);padding:28px;margin-top:28px;display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+.course-left{flex:1;min-width:200px;}
+.course-tag{display:inline-block;background:rgba(249,115,22,0.1);color:var(--brand);font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:10px;}
+.course-card h3{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;margin-bottom:8px;}
+.course-desc{color:var(--muted);font-size:13px;margin-bottom:18px;line-height:1.6;}
+.course-feats{list-style:none;}
+.course-feats li{font-size:13px;color:var(--muted);display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;line-height:1.5;}
+.course-feats li i{color:var(--brand);font-size:14px;flex-shrink:0;margin-top:2px;}
+.course-feats li strong{color:var(--text);}
+.course-right{display:flex;flex-direction:column;align-items:flex-end;gap:16px;min-width:130px;}
+.price{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--text);}
+.price-orig{font-size:13px;color:var(--muted);text-decoration:line-through;display:block;}
+.price-note{font-size:11px;color:var(--muted);}
+.buy-btn{background:var(--brand);color:#fff;border:none;padding:11px 24px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.buy-btn:hover{background:var(--brand-dim);}
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:28px;}
+.step{text-align:center;padding:20px 12px;}
+.step-num{width:42px;height:42px;background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--brand);margin:0 auto 10px;}
+.step h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px;}
+.step p{font-size:12px;color:var(--muted);line-height:1.5;}
+/* PAYMENT */
+.pay-box{background:var(--card);border:0.5px solid var(--border);border-radius:var(--r);padding:24px;margin-top:28px;max-width:440px;}
+.pay-box h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:14px;}
+.pay-row{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--card2);border-radius:8px;margin-bottom:8px;font-size:13px;border:0.5px solid var(--border);}
+.pay-row i{color:var(--brand);font-size:18px;flex-shrink:0;}
+.pay-val{margin-left:auto;font-size:12px;color:var(--brand);font-weight:600;font-family:monospace;}
+.pay-val.m{color:var(--muted);font-family:'DM Sans',sans-serif;}
+.pay-val.g{color:#4ade80;font-family:'DM Sans',sans-serif;}
+.pay-note{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.7;background:rgba(249,115,22,0.05);padding:11px 13px;border-radius:8px;border-left:3px solid var(--brand);}
+/* FOOTER */
+footer{background:var(--card);border-top:0.5px solid var(--border);padding:36px 40px;text-align:center;}
+.ft-logo{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:6px;}
+.ft-logo span{color:var(--brand);}
+.ft-tag{color:var(--muted);font-size:13px;margin-bottom:18px;}
+.ft-links{display:flex;gap:20px;justify-content:center;font-size:13px;margin-bottom:20px;flex-wrap:wrap;}
+.ft-links a{color:var(--muted);text-decoration:none;cursor:pointer;}
+.ft-links a:hover{color:var(--text);}
+.ft-bot{font-size:12px;color:var(--muted);border-top:0.5px solid var(--border);padding-top:16px;}
+.wa-btn{position:fixed;bottom:24px;right:24px;background:#25d366;color:#fff;border:none;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;z-index:999;text-decoration:none;}
+/* PAPERS PAGE */
+.papers-hdr{padding:40px 40px 24px;max-width:760px;margin:0 auto;}
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;cursor:pointer;margin-bottom:24px;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;}
+.back-btn:hover{color:var(--text);}
+.papers-hdr h2{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:6px;}
+.papers-hdr p{color:var(--muted);font-size:13px;}
+.papers-list{max-width:760px;margin:0 auto;padding:0 40px 40px;display:flex;flex-direction:column;gap:10px;}
+.paper-row{background:var(--card);border:0.5px solid var(--border);border-radius:var(--r);padding:16px 20px;display:flex;align-items:center;gap:16px;}
+.paper-row:hover{border-color:rgba(249,115,22,0.25);}
+.paper-num{width:40px;height:40px;border-radius:8px;background:rgba(249,115,22,0.1);border:0.5px solid rgba(249,115,22,0.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:var(--brand);flex-shrink:0;}
+.paper-info{flex:1;}
+.paper-info h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:2px;}
+.paper-info p{font-size:12px;color:var(--muted);}
+.paper-meta{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.pbadge{font-size:11px;font-weight:600;padding:3px 9px;border-radius:6px;background:rgba(255,255,255,0.04);color:var(--muted);}
+.pact{background:var(--brand);color:#fff;border:none;padding:7px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.pact:hover{background:var(--brand-dim);}
+.pact.locked{background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);color:var(--muted);cursor:default;}
+.enrol-wrap{max-width:760px;margin:0 auto;padding:0 40px 48px;}
+.enrol-box{background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.18);border-radius:12px;padding:22px 26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.enrol-box p{font-size:13px;color:var(--muted);flex:1;line-height:1.7;min-width:180px;}
+.enrol-box p strong{color:var(--text);}
+.enrol-btn{background:var(--brand);color:#fff;border:none;padding:10px 24px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.enrol-btn:hover{background:var(--brand-dim);}
+/* EXAM */
+.exam-nav{background:#0d0d14;border-bottom:0.5px solid rgba(255,255,255,0.08);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:50;}
+.exam-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;}
+.exam-logo span{color:var(--brand);}
+.exam-pname{font-size:11px;color:var(--muted);}
+.exam-timer{background:rgba(249,115,22,0.12);border:0.5px solid rgba(249,115,22,0.3);color:var(--brand);padding:5px 14px;border-radius:7px;font-weight:800;font-size:15px;font-family:monospace;}
+.exam-sub{background:#22c55e;color:#fff;border:none;padding:7px 18px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.sec-tabs{background:#0d0d14;border-bottom:0.5px solid rgba(255,255,255,0.08);display:flex;padding:0 18px;overflow-x:auto;}
+.sec-tab{padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;}
+.sec-tab.active{color:var(--brand);border-bottom-color:var(--brand);}
+.exam-body{display:flex;min-height:calc(100vh - 108px);}
+.q-panel{flex:1;padding:22px;overflow-y:auto;}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.q-badge{background:rgba(249,115,22,0.12);border:0.5px solid rgba(249,115,22,0.3);color:var(--brand);padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;}
+.q-type{background:rgba(255,255,255,0.05);border:0.5px solid rgba(255,255,255,0.08);color:var(--muted);padding:3px 9px;border-radius:6px;font-size:11px;}
+.q-marks{font-size:12px;margin-left:auto;}
+.q-marks .pos{color:#22c55e;font-weight:700;}
+.q-marks .neg{color:#ef4444;font-weight:700;}
+.q-text{font-size:15px;line-height:1.9;margin-bottom:22px;color:var(--text);}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:22px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:12px 14px;border:0.5px solid rgba(255,255,255,0.08);border-radius:9px;cursor:pointer;background:#12121a;}
+.opt:hover{border-color:rgba(249,115,22,0.3);}
+.opt.sel{border-color:#f97316;background:rgba(249,115,22,0.1);}
+.opt-lbl{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:var(--muted);}
+.opt.sel .opt-lbl{background:#f97316;border-color:#f97316;color:#fff;}
+.opt-txt{font-size:13px;line-height:1.6;color:var(--text);padding-top:3px;}
+.num-wrap{margin-bottom:22px;}
+.num-wrap label{font-size:13px;color:var(--muted);display:block;margin-bottom:7px;}
+.num-inp{background:#1a1a26;border:0.5px solid rgba(255,255,255,0.12);border-radius:8px;color:var(--text);font-size:16px;font-weight:700;padding:10px 13px;width:200px;outline:none;font-family:monospace;}
+.num-inp:focus{border-color:#f97316;}
+.num-hint{font-size:11px;color:var(--muted);margin-top:5px;}
+.act-row{display:flex;gap:7px;flex-wrap:wrap;padding-top:14px;border-top:0.5px solid rgba(255,255,255,0.06);}
+.btn-save{background:#f97316;color:#fff;border:none;padding:8px 18px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-save:hover{background:#c2571a;}
+.btn-rev{background:rgba(168,85,247,0.12);color:#a855f7;border:0.5px solid rgba(168,85,247,0.3);padding:8px 16px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-clr{background:transparent;color:var(--muted);border:0.5px solid rgba(255,255,255,0.1);padding:8px 12px;border-radius:7px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-nav{background:#1a1a26;color:var(--text);border:0.5px solid rgba(255,255,255,0.1);padding:8px 14px;border-radius:7px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.palette{width:200px;background:#0d0d14;border-left:0.5px solid rgba(255,255,255,0.08);padding:14px 10px;overflow-y:auto;flex-shrink:0;}
+.pal-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.pal-leg{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;padding-bottom:12px;border-bottom:0.5px solid rgba(255,255,255,0.06);}
+.pal-leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);}
+.pal-dot{width:11px;height:11px;border-radius:3px;flex-shrink:0;}
+.pal-sec{margin-bottom:10px;}
+.pal-sec-lbl{font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:600;}
+.pal-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;}
+.pq{width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;cursor:pointer;border:none;color:#fff;font-family:'DM Sans',sans-serif;}
+.pq.unseen{background:#f97316;}
+.pq.unanswered{background:#ef4444;}
+.pq.answered{background:#22c55e;}
+.pq.marked{background:#a855f7;}
+.pq.current{outline:2px solid #fff;outline-offset:1px;}
+/* SCORE */
+.score-screen{background:#0a0a0f;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;}
+.score-screen h2{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;margin-bottom:8px;}
+.score-big{font-family:'Syne',sans-serif;font-size:60px;font-weight:800;color:#f97316;margin:14px 0 4px;}
+.score-out{font-size:16px;color:var(--muted);margin-bottom:24px;}
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:440px;margin-bottom:20px;}
+.sc{background:#12121a;border:0.5px solid rgba(255,255,255,0.08);border-radius:9px;padding:14px;}
+.sc-lbl{font-size:11px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;}
+.sc-val{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;}
+.sc-val.g{color:#22c55e;}.sc-val.r{color:#ef4444;}.sc-val.b{color:#3b82f6;}
+.sec-scores{width:100%;max-width:440px;margin-bottom:24px;}
+.sec-row{display:flex;justify-content:space-between;padding:10px 14px;background:#12121a;border:0.5px solid rgba(255,255,255,0.06);border-radius:7px;margin-bottom:6px;font-size:13px;}
+.sec-row span:last-child{color:#f97316;font-weight:700;font-family:'Syne',sans-serif;}
+.retake-btn{background:#f97316;color:#fff;border:none;padding:12px 32px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:10px;}
+.back-home-btn{background:transparent;color:var(--muted);border:0.5px solid rgba(255,255,255,0.12);padding:10px 24px;border-radius:9px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;display:block;}
+@media(max-width:700px){
+  nav{padding:12px 18px;}.nav-links{display:none;}
+  .hero{padding:40px 18px 36px;}.hero h1{font-size:32px;}
+  .stat{padding:18px 14px;}
+  .sec,.papers-hdr,.papers-list,.enrol-wrap{padding-left:18px;padding-right:18px;}
+  .sec-full{padding-left:18px;padding-right:18px;}
+  .course-card{flex-direction:column;}.course-right{align-items:flex-start;}
+  footer{padding:28px 18px;}
+  .exam-body{flex-direction:column;}
+  .palette{width:100%;border-left:none;border-top:0.5px solid rgba(255,255,255,0.08);}
+  .pal-grid{grid-template-columns:repeat(8,1fr);}
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="logo" onclick="showPage('home')">
+    <div class="logo-icon">FA</div>
+    <div class="logo-text">First<span>Attempt</span></div>
+  </div>
+  <div class="nav-links">
+    <a onclick="showPage('home');gotoId('courses')">Test Series</a>
+    <a onclick="showPage('home');gotoId('why-us')">Why Different</a>
+    <a onclick="showPage('home');gotoId('payment')">Enrol</a>
+  </div>
+  <button class="nav-cta" onclick="showPage('papers')">Buy for Rs.199</button>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-badge"><i class="ti ti-flame"></i> JEE Mains Original Series — Paper 1 to 10</div>
+    <h1>JEE Mains Mocks That<br><span class="hl">Think Differently.</span></h1>
+    <p class="hero-sub">750+ unique questions across 10 papers — advanced reasoning, future-year thinking, and a style no coaching institute has tried.</p>
+    <p class="hero-note">Pattern aligned to JEE Mains · Not affiliated with NTA, Allen, or any institute</p>
+    <div class="hero-btns">
+      <button class="btn-p" onclick="showPage('papers')">Buy The Original Series — Rs.199</button>
+      <button class="btn-s" onclick="showPage('home');gotoId('why-us')">Learn More</button>
+    </div>
+    <div class="usp-strip">
+      <div class="usp-pill"><i class="ti ti-brain"></i> Advanced thinking, Mains level</div>
+      <div class="usp-pill"><i class="ti ti-stars"></i> 750+ unique questions</div>
+      <div class="usp-pill"><i class="ti ti-telescope"></i> FYQs — Future Year Questions</div>
+      <div class="usp-pill"><i class="ti ti-sparkles"></i> 14 Question Architectures</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">10</div><div class="stat-l">Full papers</div></div>
+      <div class="stat"><div class="stat-n">75</div><div class="stat-l">Questions per paper</div></div>
+      <div class="stat"><div class="stat-n">750+</div><div class="stat-l">Unique questions</div></div>
+      <div class="stat"><div class="stat-n">Rs.199</div><div class="stat-l">All-in price</div></div>
+    </div>
+  </div>
+
+  <div class="sec" id="why-us">
+    <div class="sec-lbl">What makes us different</div>
+    <div class="sec-title">Not another copy-paste test series.</div>
+    <div class="sec-sub">Every paper built from scratch. Prepare your mind for questions that have not appeared yet.</div>
+    <div class="diff-grid">
+      <div class="diff-card"><div class="diff-tag">SIGNATURE</div><div class="diff-icon"><i class="ti ti-brain"></i></div><h4>Advanced thinking at Mains level</h4><p>Deeper reasoning, not harder maths. The edge that separates 99%ile from 95%ile.</p></div>
+      <div class="diff-card"><div class="diff-tag">EXCLUSIVE</div><div class="diff-icon"><i class="ti ti-telescope"></i></div><h4>FYQs — Future Year Questions</h4><p>Topics NTA has not touched yet. Be ahead of the exam, not just prepared for it.</p></div>
+      <div class="diff-card"><div class="diff-tag">ORIGINAL</div><div class="diff-icon"><i class="ti ti-stars"></i></div><h4>750+ fully unique questions</h4><p>Not recycled PYQs. Every question crafted fresh across all 10 papers.</p></div>
+      <div class="diff-card"><div class="diff-tag">OUR EDGE</div><div class="diff-icon"><i class="ti ti-sparkles"></i></div><h4>14 Question Architectures</h4><p>Standard, Reverse, Survivor, Detective, Labyrinth, Maker, Invariant, Evolution and more.</p></div>
+    </div>
+  </div>
+
+  <div class="sec-full" id="courses">
+    <div class="sec-in">
+      <div class="sec-lbl">The Original Series</div>
+      <div class="sec-title">Paper 1 to 10 — Everything in one pack.</div>
+      <div class="sec-sub">One payment. Twelve months of access. Ten papers that will change how you think about JEE Mains.</div>
+      <div class="course-card">
+        <div class="course-left">
+          <div class="course-tag">JEE MAINS · ORIGINAL SERIES</div>
+          <h3>Paper 1 to Paper 10</h3>
+          <p class="course-desc">10 papers. 750+ questions. A completely fresh approach — built to train your thinking, not just test your memory.</p>
+          <ul class="course-feats">
+            <li><i class="ti ti-check"></i><span><strong>10 full-length papers</strong> — 75 questions each</span></li>
+            <li><i class="ti ti-check"></i><span><strong>750+ unique questions</strong> — 100% original</span></li>
+            <li><i class="ti ti-check"></i><span><strong>FYQs</strong> — Questions NTA has not done yet</span></li>
+            <li><i class="ti ti-check"></i><span><strong>14 Question Architectures</strong> across all subjects</span></li>
+            <li><i class="ti ti-check"></i><span>Physics, Chemistry and Maths — full coverage</span></li>
+            <li><i class="ti ti-check"></i><span>Detailed solutions for every question</span></li>
+            <li><i class="ti ti-check"></i><span>12 months access after enrolment</span></li>
+          </ul>
+        </div>
+        <div class="course-right">
+          <div>
+            <div class="price">Rs.199</div>
+            <span class="price-orig">Rs.499</span>
+            <div class="price-note">One-time · No subscription</div>
+          </div>
+          <button class="buy-btn" onclick="showPage('papers')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-lbl">Process</div>
+    <div class="sec-title">How it works</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h4>Pay Rs.199</h4><p>Send payment via UPI and share screenshot on WhatsApp.</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Get Access</h4><p>Login credentials shared within 30 minutes.</p></div>
+      <div class="step"><div class="step-num">3</div><h4>Pick a Paper</h4><p>Choose any paper and attempt in full timed mode.</p></div>
+      <div class="step"><div class="step-num">4</div><h4>Think and Grow</h4><p>Review solutions, understand the thinking, come back sharper.</p></div>
+    </div>
+  </div>
+
+  <div class="sec-full" id="payment">
+    <div class="sec-in">
+      <div class="sec-lbl">Enrolment</div>
+      <div class="sec-title">How to pay and get access</div>
+      <div class="pay-box">
+        <h4>3 simple steps</h4>
+        <div class="pay-row"><i class="ti ti-qrcode"></i><span>Pay via UPI</span><span class="pay-val">firstattempt@upi</span></div>
+        <div class="pay-row"><i class="ti ti-brand-whatsapp"></i><span>Send screenshot on WhatsApp</span><span class="pay-val m">+91 98765 00000</span></div>
+        <div class="pay-row"><i class="ti ti-bolt"></i><span>Get access</span><span class="pay-val g">Within 30 min</span></div>
+        <div class="pay-note">Send your UPI payment screenshot on WhatsApp with your email ID. Login credentials shared immediately after verification.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="ft-logo">First<span>Attempt</span>.com</div>
+    <div class="ft-tag">Think differently. Crack JEE Mains on your first attempt.</div>
+    <div class="ft-links">
+      <a onclick="gotoId('courses')">Test Series</a>
+      <a onclick="gotoId('why-us')">Why Different</a>
+      <a onclick="gotoId('payment')">Enrol</a>
+      <a>Privacy Policy</a>
+      <a>Refund Policy</a>
+    </div>
+    <div class="ft-bot">2025 FirstAttempt.com · Independent. Original. Not affiliated with NTA or any institute.</div>
+  </footer>
+</div>
+
+<!-- PAPERS -->
+<div id="page-papers" class="page">
+  <div class="papers-hdr">
+    <button class="back-btn" onclick="showPage('home')"><i class="ti ti-arrow-left"></i> Back to home</button>
+    <div class="sec-lbl">The Original Series</div>
+    <h2>Paper 1 to Paper 10</h2>
+    <p>750+ unique questions · FYQs included · All papers unlock after enrolment</p>
+  </div>
+  <div class="papers-list">
+    <div class="paper-row"><div class="paper-num">1</div><div class="paper-info"><h4>Paper 1 — The Beginning</h4><p>75 questions · Phase I: BUILD · Electrostatics, SHM, Waves, Modern Physics, Thermodynamics + Maths + Chemistry</p></div><div class="paper-meta"><span class="pbadge">Paid</span><button class="pact" onclick="startExam(1)">Attempt</button></div></div>
+    <div class="paper-row"><div class="paper-num">2</div><div class="paper-info"><h4>Paper 2 — The Climb</h4><p>75 questions · Phase I: BUILD</p></div><div class="paper-meta"><span class="pbadge">Paid</span><button class="pact locked" disabled>Locked</button></div></div>
+    <div class="paper-row"><div class="paper-num">3</div><div class="paper-info"><h4>Paper 3 — The Shift</h4><p>75 questions · Phase I: BUILD</p></div><div class="paper-meta"><span class="pbadge">Paid</span><button class="pact locked" disabled>Locked</button></div></div>
+    <div class="paper-row"><div class="paper-num">4</div><div class="paper-info"><h4>Paper 4 — The Barrier</h4><p>75 questions · Phase I: BUILD</p></div><div class="paper-meta"><span class="pbadge">Paid</span><button class="pact locked" disabled>Locked</button></div></div>
+    <div class="paper-row"><div class="paper-num">5</div><div class="paper-info"><h4>Paper 5 — Evolution</h4><p>75 questions · Phase II: TRANSFORM</p></div><div class="paper-meta"><span class="pbadge">Paid</span><button class="pact locked" disabled>Locked</button></div></div>
+    <div class="paper-row"><div class="paper-num">6</div><div class="paper-info"><h4>Paper 6 — Divergence</h4><p>75 questions · Phase II: TRANSFORM</p></div><div class="paper-meta"><span class="pbadge">Paid</span><button class="pact locked" disabled>Locked</button></div></div>
+    <div class="paper-row"><div class="paper-num">7</div><div class="paper-info"><h4>Paper 7 — Ascension</h4><p>75 questions · Phase II: TRANSFORM</p></div><div class="paper-meta"><span class="pbadge">Paid</span><button class="pact locked" disabled>Locked</button></div></div>
+    <div class="paper-row"><div class="paper-num">8</div><div class="paper-info"><h4>Paper 8 — Pseudo Advance I</h4><p>75 questions · Phase III: PSEUDO ADVANCE</p></div><div class="paper-meta"><span class="pbadge">Paid</span><button class="pact locked" disabled>Locked</button></div></div>
+    <div class="paper-row"><div class="paper-num">9</div><div class="paper-info"><h4>Paper 9 — Pseudo Advance II</h4><p>75 questions · Phase III: PSEUDO ADVANCE</p></div><div class="paper-meta"><span class="pbadge">Paid</span><button class="pact locked" disabled>Locked</button></div></div>
+    <div class="paper-row"><div class="paper-num">10</div><div class="paper-info"><h4>Paper 10 — The Architect</h4><p>75 questions · Phase III: PSEUDO ADVANCE</p></div><div class="paper-meta"><span class="pbadge">Paid</span><button class="pact locked" disabled>Locked</button></div></div>
+  </div>
+  <div class="enrol-wrap">
+    <div class="enrol-box">
+      <p><strong>Unlock all 10 papers for Rs.199.</strong> Pay once via UPI, send screenshot on WhatsApp, get access within 30 minutes. No subscription. No hidden charges.</p>
+      <button class="enrol-btn" onclick="showPage('home');setTimeout(function(){gotoId('payment')},100)">Enrol for Rs.199</button>
+    </div>
+  </div>
+  <footer>
+    <div class="ft-logo">First<span>Attempt</span>.com</div>
+    <div class="ft-tag">Think differently. Crack JEE Mains on your first attempt.</div>
+    <div class="ft-bot" style="border-top:none;padding-top:0;">2025 FirstAttempt.com · Independent. Original.</div>
+  </footer>
+</div>
+
+<!-- EXAM -->
+<div id="page-exam" class="page">
+  <div id="examScreen">
+    <div class="exam-nav">
+      <div>
+        <div class="exam-logo">First<span>Attempt</span></div>
+        <div class="exam-pname" id="examPaperName">Paper 1 — The Beginning · JEE Mains</div>
+      </div>
+      <div class="exam-timer" id="timerDisplay">03:00:00</div>
+      <button class="exam-sub" onclick="confirmSubmit()">Submit Paper</button>
+    </div>
+    <div class="sec-tabs">
+      <button class="sec-tab active" onclick="switchSec(0)">Physics</button>
+      <button class="sec-tab" onclick="switchSec(1)">Chemistry</button>
+      <button class="sec-tab" onclick="switchSec(2)">Maths</button>
+    </div>
+    <div class="exam-body">
+      <div class="q-panel" id="qPanel"></div>
+      <div class="palette" id="palette"></div>
+    </div>
+  </div>
+  <div id="scoreScreen" style="display:none;">
+    <div class="score-screen">
+      <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;" id="scoreTitle">Paper 1 — The Beginning</div>
+      <h2>Your Score</h2>
+      <div class="score-big" id="sFinal">--</div>
+      <div class="score-out">out of 300</div>
+      <div class="score-grid">
+        <div class="sc"><div class="sc-lbl">Correct</div><div class="sc-val g" id="sCorrect">--</div></div>
+        <div class="sc"><div class="sc-lbl">Wrong</div><div class="sc-val r" id="sWrong">--</div></div>
+        <div class="sc"><div class="sc-lbl">Skipped</div><div class="sc-val b" id="sSkip">--</div></div>
+      </div>
+      <div class="sec-scores">
+        <div class="sec-row"><span>Physics</span><span id="sPhysics">--/100</span></div>
+        <div class="sec-row"><span>Chemistry</span><span id="sChem">--/100</span></div>
+        <div class="sec-row"><span>Mathematics</span><span id="sMaths">--/100</span></div>
+      </div>
+      <button class="retake-btn" onclick="resetExam()">Retake Paper</button>
+      <button class="back-home-btn" onclick="showPage('papers')">Back to Papers</button>
+    </div>
+  </div>
+</div>
+
+<a class="wa-btn" href="https://wa.me/919876500000" target="_blank"><i class="ti ti-brand-whatsapp"></i></a>
+
+<script>
+var PAPERS = {
+  1: {
+    name: "Paper 1 — The Beginning",
+    0: [
+      {t:"mcq",q:"Three point charges are placed along the x-axis at x=2cm, x=5cm and x=8cm forming positions in AP. The two end charges are -Q each and the middle charge is +Q. The net electrostatic force on the middle charge is:",o:["Zero — forces cancel by symmetry","kQ2/9 directed left","2kQ2/9 directed right","kQ2/18 directed right"],a:0},
+      {t:"mcq",q:"Three capacitors with capacitances in GP: C, 2C and 4C are connected in series then reconnected in parallel across same voltage V. Ratio of energy stored in parallel to series configuration:",o:["49/4","7/4","49/16","4/49"],a:0},
+      {t:"mcq",q:"A circular loop of radius R carrying current I lies in a plane. An infinite straight wire carrying current 2I passes through its centre perpendicular to the plane. Net magnetic force on the loop due to the wire:",o:["mu0I2/piR outward","Zero","mu0I2R inward","2mu0I2/piR"],a:1},
+      {t:"mcq",q:"Particle in SHM with amplitude A and period T takes time T/12 to travel from x=A/2 to x=A. Time to travel from x=A/root2 to x=A:",o:["T/12","T/8","T/24","T/6"],a:1},
+      {t:"mcq",q:"Speed of electron in 2nd orbit of He+ compared to speed in 3rd orbit of Li2+. Their ratio:",o:["1:1","2:3","4:9","3:2"],a:0},
+      {t:"mcq",q:"In YDSE the 4th bright fringe of wavelength 600nm coincides with 3rd bright fringe of wavelength L2. Value of L2:",o:["800 nm","450 nm","900 nm","750 nm"],a:0},
+      {t:"mcq",q:"Same ideal gas expands from V to 3V. Isothermal process work W1. Adiabatic process work W2. Which is correct?",o:["W1 greater than W2","W1 less than W2","W1 equals W2","Depends on gamma only"],a:0},
+      {t:"mcq",q:"Element X decays to 1/16th in 40 days. Element Y decays to 1/8th in 30 days. Ratio of half lives TX to TY:",o:["1:1","2:1","1:2","3:4"],a:0},
+      {t:"mcq",q:"A wire of resistance R stretched to 3 times its length. New resistance:",o:["3R","6R","9R","R/3"],a:2},
+      {t:"mcq",q:"In photoelectric effect stopping potential depends on:",o:["Intensity only","Frequency only","Both intensity and frequency","Neither"],a:1},
+      {t:"mcq",q:"Solid sphere rolls without slipping. Ratio of rotational KE to total KE:",o:["2/7","5/7","2/5","3/7"],a:0},
+      {t:"mcq",q:"Carnot engine between 600K and 300K. Efficiency:",o:["25%","50%","75%","100%"],a:1},
+      {t:"mcq",q:"de Broglie wavelength of proton and alpha particle are equal. Ratio Kproton to Kalpha:",o:["4","2","8","1/4"],a:0},
+      {t:"mcq",q:"Two lenses f=+20cm and f=-10cm in contact. Power of combination:",o:["-5D","5D","-2.5D","2.5D"],a:0},
+      {t:"mcq",q:"Nucleus A=200 Z=82 undergoes 5 alpha decays. New atomic number:",o:["72","77","80","70"],a:0},
+      {t:"mcq",q:"In SHM at displacement x=A/2 ratio of KE to total energy:",o:["1/4","3/4","1/2","root3/2"],a:1},
+      {t:"mcq",q:"Two parallel wires carrying current in same direction:",o:["Repel each other","Attract each other","No force between them","Rotate around each other"],a:1},
+      {t:"mcq",q:"A convex mirror always forms an image that is:",o:["Real and inverted","Virtual and erect","Real and erect","Virtual and inverted"],a:1},
+      {t:"mcq",q:"When ideal gas compressed isothermally its internal energy:",o:["Increases","Decreases","Stays the same","First increases then decreases"],a:2},
+      {t:"mcq",q:"Escape velocity from Earth surface is v. From height equal to Earth radius escape velocity is:",o:["v/root2","v/2","v root2","2v"],a:0},
+      {t:"num",q:"Ball thrown vertically up — at same height at t=2s and t=4s. Find initial speed u in m/s. g=10 m/s2.",a:30},
+      {t:"num",q:"Three 6 microfarad capacitors — two in series combination in parallel with third — connected to 10V. Total energy in microjoules.",a:400},
+      {t:"num",q:"Projectile at 45 degrees with speed 20 m/s. Horizontal range in metres. g=10.",a:40},
+      {t:"num",q:"Nucleus Z=90 A=230 emits 4 alpha particles. New atomic number.",a:82},
+      {t:"num",q:"Half life of element is 10 days. After 40 days fraction remaining equals 1/N. Find N.",a:16}
+    ],
+    1: [
+      {t:"mcq",q:"Compound X on treatment with PCl5 gives Y. Y with NH3 gives Z. Z heated with Br2 and KOH gives W which has one fewer carbon than X. Identify W if X is propanoic acid:",o:["Ethylamine","Methylamine","Ethanamine","Propylamine"],a:0},
+      {t:"mcq",q:"Four compounds: 2-methylpropan-2-ol, 2-methylpropan-1-ol, propan-2-ol, propan-1-ol. Order of rate with Lucas reagent fastest to slowest:",o:["I > III > II > IV","I > II > III > IV","III > I > IV > II","I > III > IV > II"],a:0},
+      {t:"mcq",q:"Compound A gives silver mirror with Tollens but no red ppt with Fehling. Compound B decolourises Br2 water. Compound C gives effervescence with Na2CO3. Compound D gives positive iodoform test. Identify A B C D:",o:["A=benzaldehyde B=alkene C=carboxylic acid D=ethanol","A=formic acid B=alkene C=phenol D=acetone","A=glucose B=alkyne C=acetic acid D=acetaldehyde","A=benzaldehyde B=alkyne C=formic acid D=acetone"],a:0},
+      {t:"mcq",q:"Equilibrium N2+3H2=2NH3 has Kp=1.6x10^-4 at 400C. Initially pressures N2=10atm H2=30atm. The reaction:",o:["Proceeds forward because Q less than Kp","Proceeds backward because Q greater than Kp","Is already at equilibrium","Cannot be determined"],a:0},
+      {t:"mcq",q:"Neetu studies coordination compound Cr(NH3)4Cl2 Cl. Number of ions in solution, geometrical isomers and optical activity:",o:["2 ions 2 geometrical isomers trans inactive cis active","3 ions 2 geometrical isomers both inactive","2 ions 3 geometrical isomers one active","3 ions 1 geometrical isomer inactive"],a:0},
+      {t:"mcq",q:"Reaction A to products first order. At t=0 concentration 0.8M. At t=20min concentration 0.2M. Time for concentration to reach 0.05M and fraction remaining after 60 minutes:",o:["t=40 min and 1/64 remains after 60 min","t=40 min and 1/16 remains after 60 min","t=60 min and 1/64 after 60 min","t=40 min and 1/32 after 60 min"],a:0},
+      {t:"mcq",q:"Match isomerism types: Linkage isomerism, Ionisation isomerism, Coordination isomerism, Solvate isomerism with correct examples. Correct match:",o:["I-B II-A III-C IV-D","I-A II-B III-C IV-D","I-B II-C III-A IV-D","I-C II-A III-B IV-D"],a:0},
+      {t:"mcq",q:"Soni studies 4 biological molecules: found in citrus fruits essential for collagen, C4 epimer of glucose, amino acid with phenolic group, enzyme breaking proteins in stomach. Correct match:",o:["Vitamin C, Galactose, Tyrosine, Pepsin","Vitamin C, Glucose, Tyrosine, Pepsin","Vitamin B, Fructose, Alanine, Lipase","Vitamin C, Galactose, Phenylalanine, Trypsin"],a:0},
+      {t:"mcq",q:"Three electrolytes at 0.1M same temperature. Al2(SO4)3 fully ionised, CaCl2 fully ionised, CH3COOH degree of dissociation 0.01. Correct order of osmotic pressure:",o:["Al2(SO4)3 > CaCl2 > CH3COOH","CaCl2 > Al2(SO4)3 > CH3COOH","Al2(SO4)3 > CH3COOH > CaCl2","CaCl2 > CH3COOH > Al2(SO4)3"],a:0},
+      {t:"mcq",q:"Cell Cu|Cu2+(0.01M)||Ag+(0.1M)|Ag. Standard potentials Cu2+/Cu=+0.34V Ag+/Ag=+0.80V. Cell EMF and which is anode:",o:["EMF=0.46V approximately Cu is anode","EMF=0.46V Ag is anode","EMF=0.49V Cu is anode","EMF=0.43V Cu is anode"],a:0},
+      {t:"mcq",q:"SN2 reaction proceeds with:",o:["Retention of configuration","Racemization","Inversion of configuration","No stereochemical change"],a:2},
+      {t:"mcq",q:"Which pair has same hybridisation at central atom?",o:["BF3 and NF3","SF6 and PCl5","H2O and BeCl2","SO3 and CO3 2-"],a:3},
+      {t:"mcq",q:"Degree of dissociation of weak acid HA is 1 percent concentration 0.1M. pH approximately:",o:["3","4","2","5"],a:0},
+      {t:"mcq",q:"Monomer of natural rubber:",o:["Isoprene","Styrene","Vinyl chloride","Ethylene"],a:0},
+      {t:"mcq",q:"Entropy is a measure of:",o:["Energy stored","Disorder in system","Temperature","Enthalpy change"],a:1},
+      {t:"mcq",q:"Degree of unsaturation of benzene C6H6:",o:["2","3","4","5"],a:2},
+      {t:"mcq",q:"Which quantum number determines shape of orbital?",o:["Principal n","Azimuthal l","Magnetic ml","Spin ms"],a:1},
+      {t:"mcq",q:"Rate of reaction doubles for every 10 degree rise. Best explained by:",o:["Le Chatelier principle","Arrhenius equation","Hess law","Raoult law"],a:1},
+      {t:"mcq",q:"Fehling solution gives brick red precipitate with:",o:["Ketones","Aldehydes","Carboxylic acids","Alcohols"],a:1},
+      {t:"mcq",q:"Which is NOT a greenhouse gas?",o:["CO2","CH4","N2","N2O"],a:2},
+      {t:"num",q:"Normality of solution: 12.6g oxalic acid H2C2O4 in 500mL. Molar mass=126 n-factor=2.",a:4},
+      {t:"num",q:"Degree of dissociation of HA if Ka=4x10^-5 concentration=0.2M. Give alpha times 1000 as integer.",a:14},
+      {t:"num",q:"Number of sigma bonds in one molecule of benzene C6H6.",a:12},
+      {t:"num",q:"Oxidation state of Mn in KMnO4 is x. Oxidation state of Cr in K2Cr2O7 is y. Find x+y.",a:13},
+      {t:"num",q:"van t Hoff factor for K3[Fe(CN)6] assuming complete dissociation.",a:4}
+    ],
+    2: [
+      {t:"mcq",q:"N lines on coordinate plane with slopes in AP. Slope of L17 minus slope of L3 equals 12. Slope of L4 equals twice slope of L1. Equation of L10 if y-intercept is 2:",o:["y=3x+2","y=4x+2","y=2x+2","y=5x+2"],a:0},
+      {t:"mcq",q:"Intersection points of x2+y2=100 and line 2x=y combined with intersection points of 16x2-y2=36 and line 3x+y=0 form a parallelogram. Diagonals meet at (a,b). AM minus GM of a and b:",o:["0","1","2","Undefined"],a:0},
+      {t:"mcq",q:"P and Q roots with P less than Q of x2-10x+21=0. f(x)=sin2x+cos2x+1 has maximum A and minimum B in interval from (P-1)pi to (Q-2)pi. Then A+2 and B-3 are roots of:",o:["4x2-8x-(26+10root5)=0","x2-2x-3=0","x2-4x+3=0","x2+4x-1=0"],a:0},
+      {t:"mcq",q:"f(x)=ex+x. Define In = integral from (n-1)a to na of f(x) divided by f(x)+f(na-x) dx. S=I1+(1/2)I2+(1/4)I3+... converges to Ma/N where M N coprime. Find M+N:",o:["2","3","5","4"],a:0},
+      {t:"mcq",q:"f(x)=ax3+bx2+cx+d strictly increasing for all real x. Values a b c outcomes of rolling 3 dice. Probability P=M/N lowest terms. M+N:",o:["23","21","17","19"],a:0},
+      {t:"mcq",q:"Complex sequence: z1=1+2i. Each z(n+1)=conjugate of (Re(zn)+1)+i(Im(zn)+1). Argument of z11:",o:["tan inverse of 12/11","tan inverse of 11/12","tan inverse of 13/12","tan inverse of 1"],a:0},
+      {t:"mcq",q:"P divides A(1,2,3) to B(4,5,6) in ratio 1:2. R divides O(0,0,0) to C(2,3,4) in ratio 2:3. Area of triangle P R D(1,0,1):",o:["3root22 divided by 10","root22 divided by 5","3root22 divided by 5","root22 divided by 10"],a:0},
+      {t:"mcq",q:"Integral from 0 to pi of absolute value of sinx minus cosx dx:",o:["2root2-2","2root2","4","2root2+2"],a:0},
+      {t:"mcq",q:"Matrix A satisfies A squared equals A. Then (I+A) to power 8:",o:["I+8A","I+255A","I+64A","256A"],a:1},
+      {t:"mcq",q:"Roots of x2-10x+16=0 form point P. Roots of 3x2-30x+27=0 form point Q. R=(AM of all 4 roots, GM of all 4 roots). Circumradius of triangle PQR:",o:["5root2","6","5","4root3"],a:0},
+      {t:"mcq",q:"Number of integer solutions of absolute value of (x2-4) less than 3:",o:["4","5","6","7"],a:2},
+      {t:"mcq",q:"Sum of real x satisfying (x2+4x+9)/(x2+9) equals 1/3:",o:["-4","-2","4","2"],a:0},
+      {t:"mcq",q:"Limit as x approaches 0 of sin(3x) divided by 5x:",o:["3/5","5/3","1","0"],a:0},
+      {t:"mcq",q:"Circle x2+y2-6x+8y=0. Centre and radius:",o:["Centre (3,-4) radius 5","Centre (-3,4) radius 5","Centre (3,-4) radius 25","Centre (6,-8) radius 5"],a:0},
+      {t:"mcq",q:"GP first term 1 ratio 2 sum equals 255. Find n:",o:["7","8","9","6"],a:1},
+      {t:"mcq",q:"tan A=1/2 and tan B=1/3. A+B equals:",o:["pi/4","pi/3","pi/6","pi/2"],a:0},
+      {t:"mcq",q:"Letters of ARRANGE arranged so two Rs never together. Count:",o:["900","1260","360","720"],a:0},
+      {t:"mcq",q:"Area bounded by y=x2 and y=root x between x=0 and x=1:",o:["1/3","2/3","1/6","1/2"],a:0},
+      {t:"mcq",q:"Alpha and beta roots of 2x2-3x+4=0. Value of alpha squared plus beta squared:",o:["-7/4","7/4","-1/4","1/4"],a:0},
+      {t:"mcq",q:"Number of solutions of sinx equals x/10 in negative infinity to positive infinity:",o:["3","5","7","9"],a:2},
+      {t:"num",q:"Find slope of 10th line in AP series from Q1 of this Maths section.",a:3},
+      {t:"num",q:"Integral from 0 to 1 of x times ex dx equals e minus k. Find k.",a:1},
+      {t:"num",q:"Sum of all integers n satisfying absolute value of (n2-9) less than 7.",a:0},
+      {t:"num",q:"Real part of z5 in complex sequence from Q6 of Maths section.",a:5},
+      {t:"num",q:"C(10,5) minus C(8,4) equals what value.",a:182}
+    ]
+  }
+};
+
+var curPaper=1, curSec=0, curQ=0, timerSec=10800, timerInt=null;
+var answers={}, statuses={};
+
+function initState(){
+  answers={}; statuses={};
+  var p=PAPERS[curPaper];
+  for(var s=0;s<3;s++) for(var q=0;q<p[s].length;q++){
+    answers[s+"_"+q]=null; statuses[s+"_"+q]="unseen";
+  }
+  statuses["0_0"]="unanswered";
+}
+function key(s,q){return s+"_"+q;}
+function ck(){return key(curSec,curQ);}
+function cq(){return PAPERS[curPaper][curSec][curQ];}
+function sz(s){return PAPERS[curPaper][s].length;}
+function pad(n){return n<10?"0"+n:""+n;}
+
+function startExam(paperNum){
+  curPaper=paperNum||1; curSec=0; curQ=0; timerSec=10800;
+  document.getElementById("examScreen").style.display="block";
+  document.getElementById("scoreScreen").style.display="none";
+  document.getElementById("examPaperName").textContent=PAPERS[curPaper].name+" · JEE Mains";
+  document.getElementById("scoreTitle").textContent=PAPERS[curPaper].name;
+  var tabs=document.querySelectorAll(".sec-tab");
+  for(var i=0;i<tabs.length;i++) tabs[i].classList.toggle("active",i===0);
+  initState(); showPage("exam"); render(); startTimer();
+}
+
+function switchSec(s){
+  curSec=s; curQ=0;
+  if(statuses[ck()]==="unseen") statuses[ck()]="unanswered";
+  var tabs=document.querySelectorAll(".sec-tab");
+  for(var i=0;i<tabs.length;i++) tabs[i].classList.toggle("active",i===s);
+  render();
+}
+
+function render(){renderQ();renderPalette();}
+
+function renderQ(){
+  var q=cq(),k=ck();
+  var html='<div class="q-meta"><span class="q-badge">Q.'+(curQ+1)+" / "+sz(curSec)+'</span><span class="q-type">'+(q.t==="mcq"?"Single Correct MCQ":"Numerical Type")+'</span><span class="q-marks"><span class="pos">+4</span> / <span class="neg">'+(q.t==="mcq"?"-1":"0")+'</span></span></div><div class="q-text">'+q.q+"</div>";
+  if(q.t==="mcq"){
+    html+='<div class="opts">';
+    ["A","B","C","D"].forEach(function(l,i){
+      var sel=answers[k]===i?" sel":"";
+      html+='<div class="opt'+sel+'" onclick="pickOpt('+i+')"><div class="opt-lbl">'+l+'</div><div class="opt-txt">'+q.o[i]+"</div></div>";
+    });
+    html+="</div>";
+  } else {
+    var v=answers[k]!==null?answers[k]:"";
+    html+='<div class="num-wrap"><label>Enter your answer:</label><input class="num-inp" type="number" value="'+v+'" placeholder="Type answer..." oninput="setNum(this.value)"><div class="num-hint">No negative marking for numerical type.</div></div>';
+  }
+  html+='<div class="act-row"><button class="btn-save" onclick="saveNext()">Save and Next</button><button class="btn-rev" onclick="markReview()">Mark for Review</button><button class="btn-clr" onclick="clearAns()">Clear</button><button class="btn-nav" onclick="navQ(-1)">Prev</button><button class="btn-nav" onclick="navQ(1)">Next</button></div>';
+  document.getElementById("qPanel").innerHTML=html;
+}
+
+function renderPalette(){
+  var SECS=["Physics","Chemistry","Maths"];
+  var html='<div class="pal-title">Question Palette</div><div class="pal-leg"><div class="pal-leg-item"><span class="pal-dot" style="background:#f97316"></span>Not visited</div><div class="pal-leg-item"><span class="pal-dot" style="background:#ef4444"></span>Not answered</div><div class="pal-leg-item"><span class="pal-dot" style="background:#22c55e"></span>Answered</div><div class="pal-leg-item"><span class="pal-dot" style="background:#a855f7"></span>Marked</div></div>';
+  for(var si=0;si<3;si++){
+    html+='<div class="pal-sec"><div class="pal-sec-lbl">'+SECS[si]+'</div><div class="pal-grid">';
+    for(var qi=0;qi<sz(si);qi++){
+      var k=key(si,qi),st=statuses[k],cur=(si===curSec&&qi===curQ)?" current":"";
+      html+='<button class="pq '+st+cur+'" onclick="jumpTo('+si+","+qi+')">'+(qi+1)+"</button>";
+    }
+    html+="</div></div>";
+  }
+  document.getElementById("palette").innerHTML=html;
+}
+
+function startTimer(){
+  clearInterval(timerInt);
+  timerInt=setInterval(function(){
+    timerSec--;
+    if(timerSec<=0){clearInterval(timerInt);doSubmit();}
+    var h=Math.floor(timerSec/3600),m=Math.floor((timerSec%3600)/60),s=timerSec%60;
+    document.getElementById("timerDisplay").textContent=pad(h)+":"+pad(m)+":"+pad(s);
+  },1000);
+}
+
+function pickOpt(i){answers[ck()]=i;statuses[ck()]="answered";renderQ();renderPalette();}
+function setNum(v){answers[ck()]=v===""?null:parseFloat(v);statuses[ck()]=v===""?"unanswered":"answered";}
+function saveNext(){var k=ck();if(answers[k]===null)statuses[k]="unanswered";else statuses[k]="answered";navQ(1);}
+function markReview(){statuses[ck()]="marked";navQ(1);}
+function clearAns(){answers[ck()]=null;statuses[ck()]="unanswered";render();}
+function navQ(d){var n=curQ+d;if(n>=0&&n<sz(curSec)){curQ=n;if(statuses[ck()]==="unseen")statuses[ck()]="unanswered";}render();}
+function jumpTo(s,q){
+  curSec=s;curQ=q;
+  var tabs=document.querySelectorAll(".sec-tab");
+  for(var i=0;i<tabs.length;i++) tabs[i].classList.toggle("active",i===s);
+  if(statuses[ck()]==="unseen")statuses[ck()]="unanswered";
+  render();
+}
+function confirmSubmit(){
+  var ans=0,total=0;
+  for(var s=0;s<3;s++) total+=sz(s);
+  for(var k in statuses) if(statuses[k]==="answered"||statuses[k]==="marked") ans++;
+  if(confirm("You have answered "+ans+"/"+total+" questions. Submit Paper?")) doSubmit();
+}
+function doSubmit(){
+  clearInterval(timerInt);
+  var correct=0,wrong=0,skip=0,total=0,ph=0,ch=0,ma=0;
+  for(var s=0;s<3;s++){
+    var ss=0;
+    PAPERS[curPaper][s].forEach(function(q,qi){
+      var k=key(s,qi),ans=answers[k];
+      if(q.t==="mcq"){
+        if(ans===null)skip++;
+        else if(ans===q.a){correct++;total+=4;ss+=4;}
+        else{wrong++;total-=1;ss-=1;}
+      } else {
+        if(ans===null)skip++;
+        else if(Math.abs(parseFloat(ans)-q.a)<0.01){correct++;total+=4;ss+=4;}
+        else wrong++;
+      }
+    });
+    if(s===0)ph=ss;else if(s===1)ch=ss;else ma=ss;
+  }
+  document.getElementById("sFinal").textContent=Math.max(0,total);
+  document.getElementById("sCorrect").textContent=correct;
+  document.getElementById("sWrong").textContent=wrong;
+  document.getElementById("sSkip").textContent=skip;
+  document.getElementById("sPhysics").textContent=Math.max(0,ph)+"/100";
+  document.getElementById("sChem").textContent=Math.max(0,ch)+"/100";
+  document.getElementById("sMaths").textContent=Math.max(0,ma)+"/100";
+  document.getElementById("examScreen").style.display="none";
+  document.getElementById("scoreScreen").style.display="block";
+}
+function resetExam(){timerSec=10800;startExam(curPaper);}
+
+function showPage(name){
+  document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});
+  var pg=document.getElementById("page-"+name);
+  if(pg) pg.classList.add("active");
+  document.getElementById("mainNav").style.display=name==="exam"?"none":"flex";
+  window.scrollTo(0,0);
+}
+function gotoId(id){
+  var el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:"smooth"});
+}
+</script>
+</body>
+</html>
